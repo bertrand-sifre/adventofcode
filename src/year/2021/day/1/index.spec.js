@@ -13,7 +13,7 @@ const sample = [
 
 const code = require('./index')
 
-describe('day 1', () => {
+describe('2021 day 1', () => {
   it('valid sample Level 1', () => {
     const rst = code.computeLevel1(sample)
     expect(rst).toEqual(7)

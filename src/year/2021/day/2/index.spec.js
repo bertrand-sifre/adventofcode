@@ -9,13 +9,13 @@ const sample = [
 
 const code = require('./index')
 
-describe('day 2', () => {
+describe('2021 day 2', () => {
   it('valid sample step 1', () => {
-    const rst = code.computeStep1(sample)
+    const rst = code.computeLevel1(sample)
     expect(rst).toEqual(150)
   })
   it('valid sample step 2', () => {
-    const rst = code.computeStep2(sample)
+    const rst = code.computeLevel2(sample)
     expect(rst).toEqual(900)
   })
 })

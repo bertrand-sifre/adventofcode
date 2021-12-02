@@ -11,8 +11,8 @@ program
 
 program
   .command('solve')
-  .requiredOption('-d, --day <number>', 'day of calendar')
   .requiredOption('-l, --level <number>', 'level of day')
+  .option('-d, --day <number>', 'day of calendar (default current day)', new Date().getDay() + '')
   .option('-y, --year <number>', 'year of calendar (default current year)', new Date().getFullYear() + '')
   .action(async (options) => {
     const day = require(`./year/${options.year}/day`)
