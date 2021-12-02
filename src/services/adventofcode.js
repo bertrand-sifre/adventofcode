@@ -1,8 +1,7 @@
 const { default: axios } = require('axios')
-require('dotenv').config()
 
 const axiosInstance = axios.create({
-  baseURL: 'https://adventofcode.com/2021/day',
+  baseURL: 'https://adventofcode.com/2021/day/',
   timeout: 0,
   headers: {
     Cookie: process.env.cookie,
@@ -12,13 +11,14 @@ const axiosInstance = axios.create({
 /**
  * @returns {Promise<string>}
  */
-module.exports.getInput1 = async () => {
-  return (await axiosInstance.get('1/input')).data
+module.exports.getInput = async (day) => {
+  try {
+    return (await axiosInstance.get(`${day}/input`)).data
+  } catch (e) {
+    console.log(e)
+  }
 }
 
-/**
- * @returns {Promise<string>}
- */
-module.exports.getInput2 = async () => {
-  return (await axiosInstance.get('2/input')).data
+module.exports.postAnswer = async (day, level, answer) => {
+  return axiosInstance.post(`${day}/answer`, { level, answer })
 }

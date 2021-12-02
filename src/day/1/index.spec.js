@@ -1,4 +1,4 @@
-const sampleStep1 = [
+const sample = [
   '199',
   '200',
   '208',
@@ -14,12 +14,12 @@ const sampleStep1 = [
 const code = require('./index')
 
 describe('day 1', () => {
-  it('valid sample step1', () => {
-    const rst = code.computeStep1(sampleStep1)
+  it('valid sample Level 1', () => {
+    const rst = code.computeLevel1(sample)
     expect(rst).toEqual(7)
   })
-  it('valid sample step2', () => {
-    const rst = code.computeStep2(sampleStep1)
+  it('valid sample Level 2', () => {
+    const rst = code.computeLevel2(sample)
     expect(rst).toEqual(5)
   })
 })

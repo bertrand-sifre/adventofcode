@@ -1,12 +1,4 @@
-const adventofcode = require('../../services/adventofcode')
-
-module.exports.execute = async () => {
-  const input = await adventofcode.getInput1()
-  const values = input.split('\n')
-  return this.computeStep2(values)
-}
-
-module.exports.computeStep1 = (values) => {
+module.exports.computeLevel1 = (values) => {
   const integerValue = values.map(a => +a)
   let rst = 0
   for (let index = 1; index < integerValue.length; index++) {
@@ -19,7 +11,7 @@ module.exports.computeStep1 = (values) => {
   return rst
 }
 
-module.exports.computeStep2 = (values) => {
+module.exports.computeLevel2 = (values) => {
   const integerValue = values.map(a => +a)
   let rst = []
   for (let index = 0; index < integerValue.length; index++) {
@@ -31,5 +23,5 @@ module.exports.computeStep2 = (values) => {
       rst[index - 2] += integerValue[index]
     }
   }
-  return this.computeStep1(rst.slice(0, rst.length - 2))
+  return this.computeLevel1(rst.slice(0, rst.length - 2))
 }
