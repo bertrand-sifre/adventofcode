@@ -10,13 +10,21 @@ program
   .version(version)
 
 program
+  .command('build-test')
+  .option('-d, --day <number>', 'day of calendar (default current day)', new Date().getDate() + '')
+  .option('-y, --year <number>', 'year of calendar (default current year)', new Date().getFullYear() + '')
+  .action(async options => {
+    await require('./services/testBuilder').build(options.year, options.day)
+  })
+
+program
   .command('solve')
   .requiredOption('-l, --level <number>', 'level of day')
-  .option('-d, --day <number>', 'day of calendar (default current day)', new Date().getDay() + '')
+  .option('-d, --day <number>', 'day of calendar (default current day)', new Date().getDate() + '')
   .option('-y, --year <number>', 'year of calendar (default current year)', new Date().getFullYear() + '')
   .action(async (options) => {
-    const day = require(`./year/${options.year}/day`)
-    await day.execute(options.day, options.level)
+    const day = require(`./year`)
+    await day.execute(options.year, options.day, options.level)
   })
 
 program
