@@ -1,4 +1,4 @@
-const adventofcode = require('../services/adventofcode')
+const adventofcode = require('../../../services/adventofcode')
 
 const days = {
   1: require('./1/index'),
