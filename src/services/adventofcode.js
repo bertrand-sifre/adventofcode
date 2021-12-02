@@ -1,4 +1,5 @@
 const { default: axios } = require('axios')
+const querystring = require('querystring')
 
 const axiosInstance = axios.create({
   baseURL: 'https://adventofcode.com/',
@@ -16,7 +17,7 @@ module.exports.getInput = async (year, day) => {
 }
 
 module.exports.postAnswer = async (year, day, level, answer) => {
-  return axiosInstance.post(`${year}/day/${day}/answer`, { level, answer })
+  return axiosInstance.post(`${year}/day/${day}/answer`, querystring.encode({ level, answer }))
 }
 
 module.exports.getSource = async (year, day) => {

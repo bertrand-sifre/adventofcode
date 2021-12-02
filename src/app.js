@@ -35,8 +35,12 @@ program
     if (!fs.existsSync(p)) {
       fs.mkdirSync(p)
     }
+    const folder_day = path.resolve(p, 'day')
+    if (!fs.existsSync(folder_day)) {
+      fs.mkdirSync(folder_day)
+    }
     for (let i = 1; i <= 25; i++) {
-      const d = path.resolve(p, 'day', i + '')
+      const d = path.resolve(folder_day, i + '')
       if (!fs.existsSync(d)) {
         fs.mkdirSync(d)
       }

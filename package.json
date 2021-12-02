@@ -14,7 +14,8 @@
     "jest": "^27.4.3"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "testWatch": "jest --watch"
   },
   "keywords": [],
   "author": "",
