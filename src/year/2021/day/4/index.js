@@ -70,4 +70,31 @@ module.exports.computeLevel1 = (values) => {
   }
 }
 module.exports.computeLevel2 = (values) => {
+  const { draws, grids } = extract(values)
+  for (let d = 0; d < draws.length; d++) {
+    const draw = draws[d]
+    // set grid
+    for (let g = 0; g < grids.length; g++) {
+      const grid = grids[g]
+      grid.forEach(line => {
+        line.forEach(c => {
+          if (c.v === draw) {
+            c.f = true
+          }
+        })
+      })
+    }
+    for (let i = 0; i < grids.length; i++) {
+      const grid = grids[i]
+      const isValid = gridIsValid(grid)
+      if (isValid) {
+        if (grids.length > 1) {
+          grids.splice(i, 1)
+        } else {
+          return sumUnMarked(grid) * draw
+        }
+      }
+
+    }
+  }
 }
