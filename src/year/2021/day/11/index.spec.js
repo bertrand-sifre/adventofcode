@@ -14,7 +14,7 @@ describe('2021 day 11', () => {
     expect(rst).toEqual(1656)
   })
   it('valid sample level 2', () => {
-    // const rst = code.computeLeve2(sample)
-    // expect(rst).toEqual(26397)
+    const rst = code.computeLevel2(sample)
+    expect(rst).toEqual(195)
   })
 })
