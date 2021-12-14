@@ -55,18 +55,14 @@ module.exports.computeLevel1 = (values, nbStep = 10) => {
   for (let i = 0; i < nbStep; i++) {
     obj = step(obj, inputs.paitInsertion)
   }
+  // count all 1st char of pair
   const rst = Object.keys(obj).reduce((acc, curr) => {
-    if (!acc[curr.charAt(0)]) acc[curr.charAt(0)] = 0
-    acc[curr.charAt(0)] += obj[curr]
-    if (!acc[curr.charAt(1)]) acc[curr.charAt(1)] = 0
-    acc[curr.charAt(1)] += obj[curr]
+    acc[curr.charAt(0)] = (acc[curr.charAt(0)] || 0) + obj[curr]
     return acc
   }, {})
-  rst[inputs.start.charAt(0)] += 1
+  // add end because it's not count
   rst[inputs.start.charAt(inputs.start.length - 1)] += 1
-  Object.keys(rst).forEach(key => {
-    rst[key] = rst[key] / 2
-  })
+  // research min and max
   const vals = Object.keys(rst).map(key => rst[key])
   const min = Math.min(...vals)
   const max = Math.max(...vals)
