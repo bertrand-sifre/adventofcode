@@ -19,7 +19,7 @@ const extract = (values) => {
   }
 }
 
-module.exports.computeLevel1 = (values) => {
+function compute(values, nbLoop) {
   const input = extract(values)
   const maxX = Math.max(...input.dotsCoor.map(dot => dot.x))
   const maxY = Math.max(...input.dotsCoor.map(dot => dot.y))
@@ -34,7 +34,8 @@ module.exports.computeLevel1 = (values) => {
     paper[dot.x][dot.y] = '#'
   })
 
-  input.foldInstruction.forEach(instruction => {
+  for (let i = 0; i < (nbLoop || input.foldInstruction.length); i++) {
+    const instruction = input.foldInstruction[i]
     if (instruction.axe === 'x') {
       const axe = instruction.value
       for (let x = 0; x < paper.length; x++) {
@@ -59,52 +60,17 @@ module.exports.computeLevel1 = (values) => {
       }
       paper.length = axe
     }
-  })
+  }
+  return paper
+}
+
+module.exports.computeLevel1 = (values) => {
+  const paper = compute(values, 1)
   console.log(paper.map(line => line.join('')).join('\n'))
   return paper.flat().filter(a => a === '#').length
 }
 module.exports.computeLevel2 = (values) => {
-  const input = extract(values)
-  const maxX = Math.max(...input.dotsCoor.map(dot => dot.x))
-  const maxY = Math.max(...input.dotsCoor.map(dot => dot.y))
-  // fill paper
-  const paper = []
-  for (let x = 0; x <= maxX; x++) {
-    paper[x] = []
-    paper[x].length = maxY + 1
-    paper[x].fill('.')
-  }
-  input.dotsCoor.forEach(dot => {
-    paper[dot.x][dot.y] = '#'
-  })
-
-  input.foldInstruction.forEach(instruction => {
-    if (instruction.axe === 'x') {
-      const axe = instruction.value
-      for (let x = 0; x < paper.length; x++) {
-        for (let y = axe + 1; y < paper[x].length; y++) {
-          const value = paper[x][y]
-          if (value === '#') {
-            paper[x][-y + 2 * axe] = value
-          }
-        }
-        paper[x].length = axe
-      }
-    }
-    if (instruction.axe === 'y') {
-      const axe = instruction.value
-      for (let x = axe + 1; x < paper.length; x++) {
-        for (let y = 0; y < paper[x].length; y++) {
-          const value = paper[x][y]
-          if (value === '#') {
-            paper[-x + 2 * axe][y] = value
-          }
-        }
-      }
-      paper.length = axe
-    }
-  })
+  const paper = compute(values, undefined)
   console.log(paper.map(line => line.join('')).join('\n'))
-  process.exit()
   return paper.flat().filter(a => a === '#').length
 }
