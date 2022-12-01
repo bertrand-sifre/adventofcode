@@ -28,6 +28,16 @@ program
   })
 
 program
+  .command('simulate')
+  .requiredOption('-l, --level <number>', 'level of day')
+  .option('-d, --day <number>', 'day of calendar (default current day)', new Date().getDate() + '')
+  .option('-y, --year <number>', 'year of calendar (default current year)', new Date().getFullYear() + '')
+  .action(async (options) => {
+    const day = require(`./year`)
+    await day.simulate(options.year, options.day, options.level)
+  })
+
+program
   .command('make-folder-day')
   .option('-y, --year <number>', 'year of calendar (default current year)', new Date().getFullYear() + '')
   .action((options) => {
