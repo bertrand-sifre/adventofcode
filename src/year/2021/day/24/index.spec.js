@@ -253,12 +253,12 @@ const sample = [
   'add z y',
 ]
 
-const code = require('./index')
+// const code = require('./index')
 
 describe('2021 day 24', () => {
   it('valid sample level 1', () => {
-    const rst = code.computeLevel1(sample)
-    console.log(rst)
+    // const rst = code.computeLevel1(sample)
+    // console.log(rst)
   })
   it('valid sample level 2', () => {
 
