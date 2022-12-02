@@ -45,5 +45,18 @@ module.exports.computeLevel1 = (values) => {
   }, { p1: 0, p2: 0 }).p2
 
 }
+
+const choosen2 = {
+  "A": { name: "Rock", X: 3 + 0, Y: 1 + 3, Z: 2 + 6 },
+  "B": { name: "Paper", X: 1 + 0, Y: 2 + 3, Z: 3 + 6 },
+  "C": { name: "Scissors", X: 2 + 0, Y: 3 + 3, Z: 1 + 6 },
+}
+
 module.exports.computeLevel2 = (values) => {
+  return values.map(line => {
+    const game = line.split(' ')
+    const p1 = game[0]
+    const p2 = game[1]
+    return choosen2[p1][p2]
+  }).reduce((total, curr) => total + curr, 0)
 }
