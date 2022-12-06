@@ -11,6 +11,10 @@ module.exports.execute = async (year, day, level) => {
 module.exports.simulate = async (year, day, level) => {
   const input = await adventofcode.getInput(year, day)
   const values = input.split('\n')
+  // remove latest values if empty
+  if (values[values.length - 1] === '') {
+    values.pop()
+  }
   const dayCode = require(`./${year}/day/${day}`)
   const answer = dayCode['computeLevel' + level](values)
   console.log(answer)
