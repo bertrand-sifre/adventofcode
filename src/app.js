@@ -56,7 +56,7 @@ program
       }
       const indexFile = path.resolve(d, 'index.js')
       if (!fs.existsSync(indexFile)) {
-        fs.writeFileSync(indexFile, `module.exports.computeLevel1 = (values) => {\n}\nmodule.exports.computeLevel2 = (values) => {\n}\n`)
+        fs.writeFileSync(indexFile, `/**\n * @param {string[]} values\n */\nmodule.exports.computeLevel1 = (values) => {\n}\n/**\n * @param {string[]} values\n */\nmodule.exports.computeLevel2 = (values) => {\n}\n`)
       }
     }
   })
